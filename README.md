@@ -19,6 +19,9 @@ Starting at the top of the flow diagram, a camera generates video frames.
 The Vision framework consumes the frames to generate a data window of body location data.
 The action classifier consumes the data window and predicts the label: Jumping Jacks.][Overview-Diagram-1]
 
+- Note: See [Creating an Action Classifier Model][Creating an Action Classifier Model] for
+information about creating your own action classifier.
+
 The app continually presents its current action prediction on top of a
 live, full-screen video feed from the device's camera.
 When the app recognizes one or more people in the frame, it overlays a wireframe body
@@ -654,5 +657,6 @@ DispatchQueue.main.async { self.imageView.image = frameWithPosesRendering }
 [Array.max(by:)]: https://developer.apple.com/documentation/swift/array/2294243-max
 
 [--- Articles ---]: <>
+[Creating an Action Classifier Model]: https://developer.apple.com/documentation/createml/creating_an_action_classifier_model
 [Setting Up a Capture Session]: https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
 [Detecting Human Body Poses in Images]: https://developer.apple.com/documentation/vision/detecting_human_body_poses_in_images
