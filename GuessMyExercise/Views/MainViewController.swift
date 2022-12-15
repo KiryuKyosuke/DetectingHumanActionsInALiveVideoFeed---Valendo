@@ -7,6 +7,7 @@ The app's main view controller.
 
 import UIKit
 import Vision
+import SpriteKit
 
 @available(iOS 14.0, *)
 class MainViewController: UIViewController {
@@ -47,6 +48,7 @@ class MainViewController: UIViewController {
     /// - Tag: actionFrameCounts
     var actionFrameCounts = [String: Int]()
 }
+
 
 // MARK: - View Controller Events
 extension MainViewController {
@@ -93,6 +95,8 @@ extension MainViewController {
         videoCapture.updateDeviceOrientation()
     }
 }
+
+
 
 // MARK: - Button Events
 extension MainViewController {
@@ -268,4 +272,24 @@ extension MainViewController {
         // Update the UI's full-screen image view on the main thread.
         DispatchQueue.main.async { self.imageView.image = frameWithPosesRendering }
     }
+    
+}
+
+extension SKView {
+ convenience init(withEmitter name: String) {
+  self.init()
+
+  self.frame = UIScreen.main.bounds
+  backgroundColor = .clear
+
+  let scene = SKScene(size: self.frame.size)
+  scene.backgroundColor = .clear
+
+  guard let emitter = SKEmitterNode(fileNamed: name + ".sks") else { return }
+  emitter.name = name
+  emitter.position = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
+
+  scene.addChild(emitter)
+  presentScene(scene)
+ }
 }
